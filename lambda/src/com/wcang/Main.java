@@ -2,22 +2,22 @@ package com.wcang;
 
 public class Main {
 
-    interface IMath {
-        int min(int [] arr);
+    interface IMath<T extends Integer> {
+        T min(T [] arr);
     }
 
-    public static void testPassing(IMath imp) {
-        int[] array = { 5, 3, 1, 1, 0, 0, 2};
+    public static void testPassing(IMath<Integer> imp) {
+        Integer[] array = { 5, 3, 1, 1, 0, 0, 2};
         System.out.println("Passing lambda around and the minimum is " + imp.min(array));
     }
 
     public static void main(String[] args) {
-	    int[] array = {1, 2, 3, -1};
+	    Integer[] array = {1, 2, 3, -1};
 
-	    IMath simple = (x) -> {
-	        int min = x[0];
+	    IMath<Integer> simple = (x) -> {
+	        Integer min = x[0];
 
-	        for (int element: x) {
+	        for (Integer element: x) {
 	            if (min > element) {
 	                min = element;
                 }
