@@ -8,7 +8,8 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
         AssertTest.class,
-        Test2.class
+        Test2.class,
+        ParameterizedTest.class
 })
 public class TestSuite {
 }
