@@ -1,6 +1,10 @@
 import org.junit.Assert;
 import org.junit.Test;
 
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.sameInstance;
+
+
 public class AssertTest {
 
     @Test
@@ -10,11 +14,16 @@ public class AssertTest {
         Assert.assertArrayEquals("Array equality test", expected, actual);
     }
 
+
+
     @Test
     public void testSame() {
         MyClass expected = new MyClass("test");
         MyClass actual = new MyClass("test");
-        Assert.assertSame(expected, actual);
+        MyClass ref = expected;
+        Assert.assertThat(actual, is(expected));
+        Assert.assertThat(ref, sameInstance(expected));
+        //Assert.assertSame(expected, actual);
         //assertSame test for ==
         //Assert.assertSame(expected, expected);
     }
