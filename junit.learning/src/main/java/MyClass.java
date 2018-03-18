@@ -2,9 +2,25 @@ import java.util.Objects;
 
 public class MyClass {
     private String msg;
+    private int counter = 0;
 
     public MyClass(String msg) {
         this.msg = msg;
+    }
+
+    public void increment()
+    {
+        counter++;
+    }
+
+    public int getCounter() {
+        return counter;
+    }
+
+
+
+    public int divide(int numerator, int denominator) {
+        return numerator / denominator;
     }
 
     @Override
