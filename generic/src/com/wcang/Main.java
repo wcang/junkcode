@@ -19,8 +19,27 @@ public class Main {
         return count;
     }
 
+    public static void genericInterfaceTest() {
+        GenericList<String> list = new GenericList<>();
+        list.add("Hello");
+        list.add("World");
+        list.print();
+    }
+
+    public static <T> ArrayList<T> eliminateDuplicate(ArrayList<T> list) {
+        ArrayList<T> noDup = new ArrayList<>();
+
+        for (T elem: list) {
+            if (!noDup.contains(elem)) {
+                noDup.add(elem);
+            }
+        }
+
+        return noDup;
+    }
+
     public static void main(String[] args) {
-	// write your code here
+	    // write your code here
         System.out.println("testing 123");
         Integer[] list = {1, 2, 3, 4, 5};
         System.out.println("Greater than 3 count " + greaterThan(list, 3));
@@ -38,6 +57,20 @@ public class Main {
 
         for (Object obj: rawList) {
             System.out.println(obj);
+        }
+
+        genericInterfaceTest();
+        ArrayList<Integer> integerArrayList = new ArrayList<>();
+        System.out.println("======================");
+        System.out.println("Elimination duplicate:");
+        System.out.println("======================");
+        integerArrayList.add(1);
+        integerArrayList.add(2);
+        integerArrayList.add(3);
+        integerArrayList.add(5);
+        integerArrayList.add(3);
+        for (Integer entry: eliminateDuplicate(integerArrayList)) {
+            System.out.println(entry);
         }
     }
 }
