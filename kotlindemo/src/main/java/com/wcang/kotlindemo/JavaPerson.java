@@ -16,4 +16,13 @@ public class JavaPerson {
     public int getAge() {
         return age;
     }
+
+    public void setAge(int newAge) {
+        this.age = newAge;
+    }
+
+    @Override
+    public String toString() {
+        return this.name + " is " + this.age + " years old";
+    }
 }

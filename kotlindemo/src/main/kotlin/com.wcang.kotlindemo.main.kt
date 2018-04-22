@@ -37,5 +37,8 @@ fun main(args: Array<String>) {
 
     val person = JavaPerson("Ang", 38)
     println("${person.name}'s age is ${person.age} ")
+    person.age = 39
+    println("Now his age is ${person.age}")
+    println("${person}")
 
 }
