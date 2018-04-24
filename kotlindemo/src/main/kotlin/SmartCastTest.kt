@@ -22,3 +22,15 @@ fun eval(e : Expr): Int {
     }
 
 }
+/*
+interface Empty
+
+class SmartCastFail(var mutable: Int, val inMutable: Int): Empty
+
+fun testSmartCastAgain(something: Empty) {
+
+    if (something is SmartCastFail) {
+        println(something.mutable)
+    }
+
+}*/

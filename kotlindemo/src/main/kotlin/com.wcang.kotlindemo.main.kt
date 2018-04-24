@@ -1,7 +1,22 @@
+
 import com.wcang.kotlindemo.JavaPerson;
+import java.io.BufferedReader
+import java.io.StringReader
 
 fun simpleFunction(aString: String) = println(aString)
 
+fun convertToNumber(reader: BufferedReader) = try {
+        Integer.parseInt(reader.readLine())
+    }
+    catch (e: NumberFormatException) {
+        null
+    }
+
+
+fun testClassType() {
+    val a = setOf(1, 'a', 'b', "Something")
+    println(a)
+}
 
 
 fun main(args: Array<String>) {
@@ -44,4 +59,8 @@ fun main(args: Array<String>) {
     println("${person}")
     testSmart()
 
+    println(convertToNumber(BufferedReader(StringReader("Not a number"))))
+
+    println(convertToNumber(BufferedReader(StringReader("123"))))
+    testClassType()
 }
