@@ -14,6 +14,8 @@ import java.util.Date;
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "MainActivity";
     private TestThread testThread;
+    private Handler anotherHandler;
+
 
     public class TestThread extends Thread {
         public Handler handler;
@@ -25,11 +27,13 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void handleMessage(Message msg) {
                     Date date = (Date) msg.obj;
-                    Log.i(TAG, String.format("Thread %s timestamp %s", getName(), date.toString()));
+                    Log.i(TAG, String.format("Original Handler Thread %s timestamp %s", getName(), date.toString()));
                 }
             };
             Looper.loop();
+            Log.i(TAG, "Goodbye cruel world");
         }
+
     }
 
     @Override
@@ -39,19 +43,43 @@ public class MainActivity extends AppCompatActivity {
         testThread = new TestThread();
         testThread.start();
 
+
+
         Button button = findViewById(R.id.button);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i(TAG, "onClick: ");
+
                 if (v.getId() == R.id.button) {
                     Message msg = testThread.handler.obtainMessage(0, new Date());
                     testThread.handler.sendMessage(msg);
                 }
             }
         });
+
+
+        final Button anotherButton = findViewById(R.id.button2);
+        anotherButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (anotherHandler == null) {
+                    anotherHandler = new Handler(testThread.handler.getLooper()) {
+                        @Override
+                        public void handleMessage(Message msg) {
+                            Date date = (Date) msg.obj;
+                            Log.i(TAG, String.format("Another Handler Thread %s timestamp %s", Thread.currentThread().getName(), date.toString()));                        }
+                    };
+                }
+                if (v.getId() == R.id.button2) {
+                    Message msg = anotherHandler.obtainMessage(0, new Date());
+                    anotherHandler.sendMessage(msg);
+                }
+            }
+        });
+
     }
-    
+
 
     @Override
     protected void onDestroy() {
