@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity {
         public void run() {
             setName("TestThread");
             Looper.prepare();
+            // Handler will automatically binds to Looper that is attached to current thread
+            // unless specified otherwise
             handler = new Handler() {
                 @Override
                 public void handleMessage(Message msg) {
